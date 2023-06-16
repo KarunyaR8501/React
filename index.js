@@ -18,7 +18,7 @@ const PASSWORD = process.env.PASSWORD;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000/",
+    origin: "http://localhost:3000",
   })
 );
 
@@ -115,7 +115,7 @@ app.post("/register", async function (request, response) {
             pass: PASSWORD,
           },
         });
-        let link = "http://localhost:3000/";
+        let link = "http://localhost:3000";
         var mailOptions = {
           from: FROM,
           to: mailid,
@@ -195,7 +195,7 @@ app.post("/resetpassword", async function (request, response) {
     if (user) {
       let mailid = request.body.email;
       let SecurityCode = randomstring.generate(7);
-      let link = "http://localhost:3000/";
+      let link = "http://localhost:3000";
       await db
         .collection("users")
         .updateOne({ email: mailid }, { $set: { SecurityCode: SecurityCode } });
